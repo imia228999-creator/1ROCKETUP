@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1677ff">
+  <title>ROCKETUP</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <header class="top">
+    <div class="brand"><span class="logo">R</span><span>ROCKET<span class="blue">UP</span></span></div>
+    <button class="profile" id="profileBtn">Войти</button>
+  </header>
+
+  <main>
+    <section class="welcome">
+      <div class="eyebrow">ТВОЯ КОЛЛЕКЦИЯ НАЧИНАЕТСЯ ЗДЕСЬ</div>
+      <h1>Собирай. Улучшай.<br><span>Открывай новое.</span></h1>
+      <p>Твоя личная коллекция виртуальных предметов.</p>
+      <div class="welcome-actions">
+        <button class="primary" data-tab="catalog">Открыть каталог</button>
+        <div class="online"><i></i> ROCKETUP online</div>
+      </div>
+    </section>
+
+    <section class="ticker">
+      <div class="ticker-title">ПОСЛЕДНИЕ СОБЫТИЯ</div>
+      <div class="ticker-items"><span>✨ Nova получил предмет «Ледяная звезда»</span><span>🚀 Alex собрал новую коллекцию</span><span>💎 Mia улучшила «Синий кристалл»</span></div>
+    </section>
+
+    <section class="page active" id="home">
+      <div class="section-head"><div><small>НАЧНИ ЗДЕСЬ</small><h2>Разделы ROCKETUP</h2></div></div>
+      <div class="tiles">
+        <button class="tile tile-blue" data-tab="catalog"><b>Каталог</b><span>Изучай коллекцию</span><strong>◇</strong></button>
+        <button class="tile tile-light" data-tab="cases"><b>Коллекции</b><span>Открывай наборы</span><strong>▦</strong></button>
+        <button class="tile tile-light" data-tab="upgrade"><b>Улучшение</b><span>Объединяй предметы</span><strong>↗</strong></button>
+        <button class="tile tile-dark" data-tab="inventory"><b>Инвентарь</b><span>Твои предметы</span><strong>▣</strong></button>
+      </div>
+      <div class="section-head"><div><small>ВЫБОР РЕДАКЦИИ</small><h2>Популярные предметы</h2></div><button class="link" data-tab="catalog">Все →</button></div>
+      <div class="items" id="featured"></div>
+    </section>
+
+    <section class="page" id="catalog">
+      <div class="section-head"><div><small>КОЛЛЕКЦИЯ</small><h2>Каталог предметов</h2></div></div>
+      <input class="search" id="search" placeholder="Поиск предметов...">
+      <div class="filters"><button class="filter selected" data-filter="all">Все</button><button class="filter" data-filter="rare">Редкие</button><button class="filter" data-filter="epic">Эпические</button><button class="filter" data-filter="legend">Легендарные</button></div>
+      <div class="items" id="catalogItems"></div>
+    </section>
+
+    <section class="page" id="cases">
+      <div class="section-head"><div><small>ТЕМАТИЧЕСКИЕ НАБОРЫ</small><h2>Коллекции</h2></div></div>
+      <div class="case-card"><div class="case-art">❄️</div><div><small>СЕРИЯ 01</small><h3>Северное сияние</h3><p>Набор из виртуальных значков и артефактов.</p><button class="primary small" data-tab="catalog">Посмотреть предметы</button></div></div>
+      <div class="case-card"><div class="case-art purple">🌌</div><div><small>СЕРИЯ 02</small><h3>Космическая одиссея</h3><p>Коллекция космических символов.</p><button class="primary small" data-tab="catalog">Посмотреть предметы</button></div></div>
+    </section>
+
+    <section class="page" id="upgrade">
+      <div class="section-head"><div><small>МАСТЕРСКАЯ</small><h2>Улучшение предметов</h2></div></div>
+      <div class="upgrade-box"><div class="orb">✦</div><h3>Создай новый стиль</h3><p>Выбери два предмета из своей коллекции и объедини их в новый декоративный предмет. Без ставок и денежных рисков.</p><button class="primary" id="combineBtn">Попробовать демо</button><div id="upgradeResult" class="result"></div></div>
+    </section>
+
+    <section class="page" id="inventory">
+      <div class="section-head"><div><small>ТВОЯ СОБСТВЕННОСТЬ</small><h2>Инвентарь</h2></div></div>
+      <div class="inventory-summary"><span>Предметов в коллекции</span><b id="itemCount">0</b></div>
+      <div class="items" id="inventoryItems"></div>
+      <p class="muted" id="emptyInventory">Пока здесь пусто. Добавь первый предмет из каталога.</p>
+    </section>
+
+    <section class="page" id="vip">
+      <div class="vip-card"><div class="vip-star">✦</div><small>ROCKETUP MEMBERSHIP</small><h2>VIP-клуб</h2><p>Особое оформление профиля, значок участника и тематические коллекции.</p><button class="primary" id="vipBtn">Посмотреть статус</button><div id="vipStatus" class="result"></div></div>
+    </section>
+
+    <section class="page" id="profile">
+      <div class="section-head"><div><small>АККАУНТ</small><h2>Профиль</h2></div></div>
+      <div class="profile-card"><div class="avatar" id="avatar">R</div><h3 id="userName">Гость ROCKETUP</h3><p id="userInfo">Войди через Telegram, чтобы увидеть профиль.</p><div class="profile-stat"><span>Предметов</span><b id="profileCount">0</b></div></div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav">
+    <button class="nav active" data-tab="home"><span>⌂</span>Главная</button>
+    <button class="nav" data-tab="catalog"><span>◇</span>Каталог</button>
+    <button class="nav" data-tab="cases"><span>▦</span>Коллекции</button>
+    <button class="nav" data-tab="inventory"><span>▣</span>Инвентарь</button>
+    <button class="nav" data-tab="profile"><span>○</span>Профиль</button>
+  </nav>
+  <script src="app.js"></script>
+</body>
+</html>
